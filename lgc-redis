@@ -1,0 +1,38 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides           lgc-redis
+# Required-Start:    $network $time
+# Required-Stop:     $network $time
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: docker redis
+# Description:       Init script for the docker redis cache server
+### END INIT INFO
+#
+# Author:   "lordgasmic" <lordgasmic@lordgasmic.com>
+#
+set -e
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+
+case "$1" in
+  start)
+    docker start redis
+    ;;
+  stop)
+    docker stop redis
+    ;;
+  status)
+    docker ps -f name=redis
+    ;;
+  force-reload|restart)
+    $0 stop
+    $0 start
+    ;;
+  *)
+    echo "Usage: /etc/init.d/lgc-redis {start|stop|restart|force-reload}"
+    exit 1
+    ;;
+esac
+
+exit 0
