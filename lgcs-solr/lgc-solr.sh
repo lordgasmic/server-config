@@ -14,15 +14,19 @@
 set -e
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
+solr_var_dir=/var/solr
 
 case "$1" in
   start)
+    cd $solr_var_dir
     runuser -u solr -- solr start
     ;;
   stop)
+    cd $solr_var_dir
     runuser -u solr -- solr stop
     ;;
   status)
+    cd $solr_var_dir
     runuser -u solr -- solr status
     ;;
   force-reload|restart)
