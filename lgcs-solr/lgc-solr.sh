@@ -35,7 +35,7 @@ case "$1" in
     runuser -u solr -- /opt/solr/bin/solr start
     ;;
   *)
-    echo "Usage: /etc/init.d/lgc-rabbit {start|stop|restart|force-reload}"
+    echo "Usage: /etc/init.d/lgc-solr {start|stop|restart|force-reload}"
     exit 1
     ;;
 esac
