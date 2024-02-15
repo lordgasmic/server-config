@@ -19,19 +19,20 @@ solr_var_dir=/var/solr
 case "$1" in
   start)
     cd $solr_var_dir
-    runuser -u solr -- solr start
+    runuser -u solr -- /opt/solr/bin/solr start
     ;;
   stop)
     cd $solr_var_dir
-    runuser -u solr -- solr stop
+    runuser -u solr -- /opt/solr/bin/solr stop
     ;;
   status)
     cd $solr_var_dir
-    runuser -u solr -- solr status
+    runuser -u solr -- /opt/solr/bin/solr status
     ;;
   force-reload|restart)
-    runuser -u solr -- solr stop
-    runuser -u solr -- solr start
+    cd $solr_var_dir
+    runuser -u solr -- /opt/solr/bin/solr stop
+    runuser -u solr -- /opt/solr/bin/solr start
     ;;
   *)
     echo "Usage: /etc/init.d/lgc-rabbit {start|stop|restart|force-reload}"
